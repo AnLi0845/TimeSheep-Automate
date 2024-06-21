@@ -21,6 +21,12 @@ def automate_timesheet(username, password, from_data_enter, to_data_enter, worki
     today = datetime.date.today()
     current_day = today.day
 
+    # Use current day as default if from_data_enter or to_data_enter are not provided
+    if from_data_enter is None:
+        from_data_enter = current_day
+    if to_data_enter is None:
+        to_data_enter = current_day
+
     # Initialize the WebDriver with headless mode
     driver = webdriver.Firefox(options=options)
 
@@ -134,8 +140,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Automate timesheet entry.")
     parser.add_argument("username", help="Username for login")
     parser.add_argument("password", help="Password for login")
-    parser.add_argument("--from_data_enter", type=int, default=21, help="From date")
-    parser.add_argument("--to_data_enter", type=int, default=21, help="To date")
+    parser.add_argument("--from_data_enter", type=int, help="From date")
+    parser.add_argument("--to_data_enter", type=int, help="To date")
     parser.add_argument("--working_hour", type=int, default=8, help="Working hours")
 
     args = parser.parse_args()
