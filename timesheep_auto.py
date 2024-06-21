@@ -67,7 +67,6 @@ def automate_timesheet(username, password, from_data_enter, to_data_enter, worki
             progress_bar.update(1)
 
             logging.info("Waiting for the timesheet page to load.")
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//label[contains(text(), 'Welcome Man Shun Anson Li to Timesheet')]")))
             WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(), 'Timesheet Loaded')]")))
             progress_bar.update(1)
 
